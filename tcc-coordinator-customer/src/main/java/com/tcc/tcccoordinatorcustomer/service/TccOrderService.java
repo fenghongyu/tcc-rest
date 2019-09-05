@@ -58,6 +58,7 @@ public class TccOrderService {
                     .productCode(orderRequest.getProductCode())
                     .frozenNum(orderRequest.getQuantity())
                     .version(1L)
+                    .status(FrozeRequest.STATUS_NORMAL)
                     .build();
             restTemplate.postForEntity(inventoryServiceUrl, frozeRequest, String.class);
 
