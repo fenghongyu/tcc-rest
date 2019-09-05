@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcc.inventoryservice.dao.InventoryDao">
+
+    <insert id="insertInventory">
+        insert into inventory
+        (product_code, left_num, version, create_time)
+        values
+        (productCode, leftNum, version, createTime)
+    </insert>
+
+    <update id="updateInventoryLeftNum">
+        update inventory
+        set left_num = #{leftNum}
+        where id = #{id}
+    </update>
+
+    <select id="selectInventoryByProductCodeForUpdate" resultType="com.tcc.inventoryservice.domain.Inventory">
+        select * from inventory
+        where product_code = #{productCode}
+        for update
+    </select>
+
+</mapper>

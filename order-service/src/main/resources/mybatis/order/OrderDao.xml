@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcc.orderservice.dao.OrderDao">
+
+    <insert id="insertUserOrder" parameterType="UserOrder">
+        insert into user_order
+        (tx_id, user_id, product_code, quantity, state, expire_time, version, create_time)
+        values
+        (#{txId},#{userId},#{productCode},#{quantity},#{state},#{expireTime},#{version},#{createTime})
+    </insert>
+
+    <update id="updateUserOrderStatus">
+        update user_order
+        set `state` = #{orderState}
+        where tx_id = #{txId}
+    </update>
+
+    <select id="selectUserOrderByTxId" resultType="com.tcc.orderservice.domain.UserOrder">
+        select * from user_order
+        where tx_id = #{txId}
+    </select>
+
+</mapper>

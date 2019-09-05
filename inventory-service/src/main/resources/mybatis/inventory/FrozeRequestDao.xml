@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcc.inventoryservice.dao.FrozeRequestDao">
+
+    <insert id="insertFrozeRequest">
+        insert into froze_request
+        (tx_id, status, product_code, frozen_num, version, create_time)
+        values
+        (#{txId}, #{status}, #{productCode}, #{frozenNum}, #{version}, #{createTime})
+    </insert>
+
+    <update id="updateFrozeRequestStatus">
+        update froze_request
+        set status = #{status}
+        where tx_id = #{txId};
+    </update>
+
+    <select id="selectFrozeRequest" resultType="com.tcc.inventoryservice.domain.FrozeRequest">
+        select * from froze_request
+        where tx_id = #{txId} and `status` = #{status}
+    </select>
+</mapper>
